@@ -1,0 +1,29 @@
+:root {
+    --p1: 1rem;
+    --p2: 0.5rem;
+    --p3: 2rem;
+
+    --m1: 1rem;
+    --m2: 0.5rem;
+
+    --fs1: 1rem;
+    --fs2: 1.5rem;
+    --fs3: 3rem;
+    --fs4: 0.7rem;
+
+    --sep1: 0.5rem;
+    --sep2: 1rem;
+
+    --border: 1px;
+
+    --accent: #187ef1;
+    --sec: #923af1;
+
+    --main:        light-dark(#fbfbfb,  #1c1c1c);
+    --negative:    light-dark(#1c1c1c,  #fbfbfb);
+    --hover:       light-dark(#d8d8d8,  #3d3d3d);
+    --text-clr:    light-dark(#000   ,  #fff);
+    --text-grey:   light-dark(#888888,  #888888);
+    --inactive:    light-dark(#888888,  #888888);
+    --border-clr:  light-dark(#a8a8a8,  #888888);
+}

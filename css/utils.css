@@ -1,0 +1,19 @@
+.hflex {
+    display: flex;
+    flex-direction: row;
+}
+
+.vflex {
+    display: flex;
+    flex-direction: column;
+}
+
+.just-cont-center { justify-content: center; }
+.align-items-center { align-items: center; }
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.wide { width: 100%; }
+.tall { height: 100%; }
