@@ -1,5 +1,5 @@
 # c3-schema-gen
-<img src="assets/c3-json.svg" align="right" height="200" />
+<img src="assets/c3-json.png" align="right"/>
 
 _c3-schema-gen_ is a simple web tool run on github pages that generates JSON schema text for the C3 programming language config specific to your environment.
 
