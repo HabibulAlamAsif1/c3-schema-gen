@@ -12,3 +12,12 @@ header {
     margin-top: var(--m1);
     text-align: center;
 }
+
+.textbox-container {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: var(--border-clr);
+    border: var(--border) solid var(--border-clr);
+    border-radius: 6px;
+}
