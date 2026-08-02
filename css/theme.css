@@ -21,4 +21,10 @@
     --text-grey:   light-dark(#888888,  #888888);
     --inactive:    light-dark(#888888,  #888888);
     --border-clr:  light-dark(#dadada,  #2a2d50);
+
+    --icon-clr: none;
+}
+
+[data-theme="dark"] {
+    --icon-clr: invert(100%);
 }

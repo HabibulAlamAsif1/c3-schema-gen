@@ -46,8 +46,22 @@ textarea:focus { outline: 0; }
     padding: 0 var(--p2) 0 var(--p2);
 
     display: grid;
-    grid-template-columns: auto auto 1fr auto auto;
     gap: var(--p2);
 
     place-items: center;
+}
+
+.icon {
+    background-color: transparent;
+    padding: var(--p2);
+    border: none;
+
+    transition: background-color 0.2s ease-in-out;
+}
+
+.icon:hover { background-color: #ffffff1d; }
+
+.icon img {
+    height: 1.3rem;
+    filter: var(--icon-clr);
 }
