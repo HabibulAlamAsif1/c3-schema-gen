@@ -17,3 +17,5 @@
 
 .wide { width: 100%; }
 .tall { height: 100%; }
+
+.gap1 { gap: var(--p1); }

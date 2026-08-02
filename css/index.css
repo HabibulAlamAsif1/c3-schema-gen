@@ -12,12 +12,3 @@ header {
     margin-top: var(--m1);
     text-align: center;
 }
-
-h1 {
-    margin: 0 0 0 var(--m2);
-
-    align-self: flex-end;
-
-    color: var(--sec);
-    font-size: var(--fs3);
-}
