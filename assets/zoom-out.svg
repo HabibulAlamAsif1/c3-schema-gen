@@ -1,0 +1,20 @@
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg">
+  <circle
+     style="fill:none;stroke:#010101;stroke-width:2;stroke-linecap:round;s"
+     
+     cx="12"
+     cy="12"
+     r="11" />
+  <path
+     style="fill:none;stroke:#010101;stroke-width:3;stroke-linecap:round;s"
+     d="M 20.99353,20.99353 30.5,30.5"/>
+  <path
+     style="fill:none;stroke:#010101;stroke-width:2;stroke-linecap:round;s"
+     d="M 6.3591309,12 H 17.640869"/>
+</svg>

@@ -14,11 +14,17 @@
     --accent: #187ef1;
     --sec: #923af1;
 
-    --main:        light-dark(#fbfbfb,  #1c1c1c);
+    --main:        light-dark(#f4f4f4,  #171821);
     --negative:    light-dark(#1c1c1c,  #fbfbfb);
     --hover:       light-dark(#d8d8d8,  #3d3d3d);
-    --text-clr:    light-dark(#000   ,  #fff);
+    --text-clr:    light-dark(#1d1d1d,  #dddddd);
     --text-grey:   light-dark(#888888,  #888888);
     --inactive:    light-dark(#888888,  #888888);
-    --border-clr:  light-dark(#a8a8a8,  #888888);
+    --border-clr:  light-dark(#dadada,  #2a2d50);
+
+    --icon-clr: none;
+}
+
+[data-theme="dark"] {
+    --icon-clr: invert(100%);
 }
