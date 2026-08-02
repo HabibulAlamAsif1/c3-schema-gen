@@ -39,3 +39,15 @@ textarea:focus { outline: 0; }
     border: var(--b1) solid var(--border-clr);
     border-radius: var(--br1);
 }
+
+.textbox-toolbar {
+    height: 2.5rem;
+
+    padding: 0 var(--p2) 0 var(--p2);
+
+    display: grid;
+    grid-template-columns: auto auto 1fr auto auto;
+    gap: var(--p2);
+
+    place-items: center;
+}
