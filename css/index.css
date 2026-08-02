@@ -13,11 +13,41 @@ header {
     text-align: center;
 }
 
-h1 {
-    margin: 0 0 0 var(--m2);
+main { padding: var(--p1); }
 
-    align-self: flex-end;
+textarea {
+    flex-grow: 1;
 
-    color: var(--sec);
-    font-size: var(--fs3);
+    background-color: var(--main);
+
+    padding: var(--p2);
+    border: 0;
+    border-radius: var(--br1);
+
+    resize: vertical;
+}
+
+textarea:focus { outline: 0; }
+
+.textbox-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    
+    background-color: var(--border-clr);
+    border: var(--b1) solid var(--border-clr);
+    border-radius: var(--br1);
+}
+
+.textbox-toolbar {
+    height: 2.5rem;
+
+    padding: 0 var(--p2) 0 var(--p2);
+
+    display: grid;
+    grid-template-columns: auto auto 1fr auto auto;
+    gap: var(--p2);
+
+    place-items: center;
 }

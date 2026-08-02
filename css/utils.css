@@ -8,6 +8,8 @@
     flex-direction: column;
 }
 
+.grid { display: grid }
+
 .just-cont-center { justify-content: center; }
 .align-items-center { align-items: center; }
 .flex-center {
@@ -15,5 +17,9 @@
     align-items: center;
 }
 
-.wide { width: 100%; }
-.tall { height: 100%; }
+.fill {
+    width: 100%;
+    height: 100%;
+}
+
+.gap1 { gap: var(--p1); }

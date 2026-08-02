@@ -4,19 +4,12 @@
     --p3: 2rem;
 
     --m1: 1rem;
-    --m2: 0.5rem;
 
     --fs1: 1rem;
-    --fs2: 1.5rem;
-    --fs3: 2.5rem;
-    --fs4: 0.7rem;
 
-    --logo-sz: 3.5rem;
+    --b1: 1px;
 
-    --sep1: 0.5rem;
-    --sep2: 1rem;
-
-    --border: 1px;
+    --br1: 6px;
 
     --accent: #187ef1;
     --sec: #923af1;
@@ -28,11 +21,4 @@
     --text-grey:   light-dark(#888888,  #888888);
     --inactive:    light-dark(#888888,  #888888);
     --border-clr:  light-dark(#a8a8a8,  #888888);
-}
-
-@media screen and (max-width: 500px) {
-    :root {
-        --fs3: 2rem;
-        --logo-sz: 3rem;
-    }
 }
