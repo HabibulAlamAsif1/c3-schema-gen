@@ -13,11 +13,23 @@ header {
     text-align: center;
 }
 
+textarea {
+    background-color: var(--main);
+
+    padding: var(--p2);
+    border: 0;
+    border-radius: var(--br1);
+
+    resize: vertical;
+}
+
+textarea:focus { outline: 0; }
+
 .textbox-container {
     display: flex;
     flex-direction: column;
     
     background-color: var(--border-clr);
     border: var(--b1) solid var(--border-clr);
-    border-radius: 6px;
+    border-radius: var(--br1);
 }
