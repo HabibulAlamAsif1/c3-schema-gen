@@ -13,7 +13,11 @@ header {
     text-align: center;
 }
 
+main { padding: var(--p1); }
+
 textarea {
+    flex-grow: 1;
+
     background-color: var(--main);
 
     padding: var(--p2);
@@ -26,6 +30,8 @@ textarea {
 textarea:focus { outline: 0; }
 
 .textbox-container {
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     
