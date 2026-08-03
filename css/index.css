@@ -55,13 +55,20 @@ textarea:focus { outline: 0; }
     background-color: transparent;
     padding: var(--p2);
     border: none;
-
-    transition: background-color 0.2s ease-in-out;
 }
 
-.icon:hover { background-color: #ffffff1d; }
+.icon:hover {
+    transition: background-color 0.2s ease;
+    background-color: #ffffff1d; }
 
-.icon img {
+.icon:focus {
+    transition: 0s;
+    background-color: #ffffff1d; }
+
+.icon:active { background-color: #0000003d; }
+.icon:active .icon-img { scale: 0.9; }
+
+.icon-img {
     height: 1.3rem;
     filter: var(--icon-clr);
 }
