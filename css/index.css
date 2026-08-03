@@ -46,7 +46,6 @@ textarea:focus { outline: 0; }
     padding: 0 var(--p2) 0 var(--p2);
 
     display: grid;
-    gap: var(--p2);
 
     place-items: center;
 }
