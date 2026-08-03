@@ -37,6 +37,9 @@ textarea {
     resize: vertical;
 }
 
+#input-box-props { height: 25rem; }
+#input-box-targets { height: 20rem; }
+
 textarea:focus { outline: 0; }
 
 .textbox-container {
@@ -80,4 +83,15 @@ textarea:focus { outline: 0; }
 .icon-img {
     height: 1.3rem;
     filter: var(--icon-clr);
+}
+
+@media screen and (max-width: 480px) {
+    .text-fields {
+        padding: 0;
+        grid-template-columns: 1fr;
+    }
+
+    #output-box { height: 25rem; }
+    #input-box-props { height: 25rem; }
+    #input-box-targets { height: 20rem; }
 }
