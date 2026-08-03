@@ -15,6 +15,15 @@ header {
 
 main { padding: var(--p1); }
 
+.text-fields {
+    display: grid;
+
+    grid-template-columns: 1.5fr 2fr;
+
+    padding: var(--p3);
+    gap: var(--p1);
+}
+
 textarea {
     flex-grow: 1;
     min-height: 15rem;
