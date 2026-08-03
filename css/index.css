@@ -58,13 +58,13 @@ textarea:focus { outline: 0; }
 
 .icon:hover {
     transition: background-color 0.2s ease;
-    background-color: #ffffff1d; }
+    background-color: var(--hover) }
 
 .icon:focus {
     transition: 0s;
-    background-color: #ffffff1d; }
+    background-color: var(--hover); }
 
-.icon:active { background-color: #0000003d; }
+.icon:active { background-color: var(--click); }
 .icon:active .icon-img { scale: 0.9; }
 
 .icon-img {
