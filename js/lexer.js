@@ -29,6 +29,9 @@ const wordMap = {
     "argument":          TokenType.T_STRING,
     "string":            TokenType.T_STRING,
 
+    "option":            TokenType.T_LIST,
+    "list":              TokenType.T_LIST,
+
     "or":                TokenType.KW_OR,
     "and":               TokenType.KW_AND,
     "one":               TokenType.KW_ONE,
@@ -109,5 +112,5 @@ export function tokenize(text = "") {
 
 // test
 tokenize(
-    "  win-subsystem                      Windows subsystem: CONSOLE (default), WINDOWS (default if @winmain present), NATIVE, POSIX, BOOT_APPLICATION, EFI_APPLICATION, EFI_BOOT_SERVICE_DRIVER, EFI_ROM or EFI_RUNTIME_DRIVER."
+    "  linux-libc                         Set the libc to use for Linux. Valid options are 'host', 'gnu' and 'musl', default is 'host'"
 ).forEach(token => console.log(`${token.val} | ${token.type}`));
