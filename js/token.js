@@ -20,3 +20,13 @@ const TokenType = Object.freeze({
     QUOTE: 18
 })
 
+class Token {
+    /**
+     * @param {string} val 
+     * @param {number} type 
+     */
+    constructor(val, type) {
+        this.val = val
+        this.type = type
+    }
+}
