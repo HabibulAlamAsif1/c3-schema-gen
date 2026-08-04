@@ -57,12 +57,13 @@ export class Property {
      * @param {boolean} hasOptDesc 
      * @param {Option[]} options 
      */
-    constructor(isArray, type, defaultv, description, hasOptDesc, options) {
+    constructor(isArray, type, defaultv, description, hasOptDesc, options, isGlobal) {
         this.isArray = isArray
         this.type = type,
         this.defaultv = defaultv
         this.description = description
         this.hasOptDesc = hasOptDesc
         this.options = options
+        this.isGlobal = isGlobal
     }
 }
