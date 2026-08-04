@@ -4,8 +4,8 @@ export const TokenType = Object.freeze({
     COLON: 2,
     DOT: 3,
     QUOTE: 4,
-    T_BOOL: 5,
-    T_STRING: 6,
+    PAREN_OPEN: 5,
+    PAREN_CLOSE: 6,
     CAT_GLOABL: 7,
     CAT_TARGET: 8,
     KW_TO: 9,
@@ -15,6 +15,8 @@ export const TokenType = Object.freeze({
     KW_AND: 13,
     KW_DEFAULT: 14,
     KW_IF: 15,
+    T_BOOL: 16,
+    T_STRING: 17,
 })
 
 export class Token {

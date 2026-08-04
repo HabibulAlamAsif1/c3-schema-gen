@@ -91,6 +91,9 @@ export function tokenize(text = "") {
             case ',':     appendOperator(TokenType.COMMA); break
             case '.':     appendOperator(TokenType.DOT); break
             
+            case '(':     appendOperator(TokenType.PAREN_OPEN); break
+            case ')':     appendOperator(TokenType.PAREN_CLOSE); break
+
             case '"':
             case '\'':    appendOperator(TokenType.QUOTE); break 
             
@@ -108,5 +111,5 @@ export function tokenize(text = "") {
 
 // test
 tokenize(
-    "true false foo name of enable/disable or default bar"
+    "  win-subsystem                      Windows subsystem: CONSOLE (default), WINDOWS (default if @winmain present), NATIVE, POSIX, BOOT_APPLICATION, EFI_APPLICATION, EFI_BOOT_SERVICE_DRIVER, EFI_ROM or EFI_RUNTIME_DRIVER."
 ).forEach(token => console.log(`${token.val} | ${token.type}`));
