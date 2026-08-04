@@ -89,6 +89,11 @@ export function tokenize(text = "") {
             case '\v':    appendWord(); break
 
             case '\n':    appendOperator(TokenType.END); break
+
+            case '(':
+            case ')':
+            case '"':
+            case '\'':    break
             
             case ':':     appendOperator(TokenType.COLON); break
             case ',':     appendOperator(TokenType.COMMA); break
