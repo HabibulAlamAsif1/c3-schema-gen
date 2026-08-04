@@ -58,6 +58,8 @@ export function tokenize(text = "") {
     function curr() { return text[i] }
     
     function appendWord() {
+        if (token.val === "") { return }
+
         token.type = mapWordToType(token.val)
 
         tokenArr.push(token)
@@ -81,11 +83,7 @@ export function tokenize(text = "") {
             case '\n':
             case '\r':
             case '\t':
-            case '\v':
-                if (token.val === "")  { break }
-
-                appendWord()
-                break
+            case '\v':    appendWord(); break
             
             case ':':     appendOperator(TokenType.COLON); break
             case ',':     appendOperator(TokenType.COMMA); break
@@ -97,8 +95,7 @@ export function tokenize(text = "") {
             case '"':
             case '\'':    appendOperator(TokenType.QUOTE); break 
             
-            default:
-                token.val += curr()
+            default:      token.val += curr()
         }
 
         i++
