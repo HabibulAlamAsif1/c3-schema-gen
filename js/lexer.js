@@ -18,17 +18,26 @@ const wordMap = {
 
     "directory":         TokenType.T_STRING,
     "directorie":        TokenType.T_STRING,
+    "source":            TokenType.T_STRING,
     "file":              TokenType.T_STRING,
     "path":              TokenType.T_STRING,
 
     "version":           TokenType.T_STRING,
     "name":              TokenType.T_STRING,
+    "url":               TokenType.T_STRING,
+    "arg":               TokenType.T_STRING,
+    "argument":          TokenType.T_STRING,
     "string":            TokenType.T_STRING,
 
     "or":                TokenType.KW_OR,
     "and":               TokenType.KW_AND,
     "one":               TokenType.KW_ONE,
-    "of":                TokenType.KW_OF
+    "of":                TokenType.KW_OF,
+    "if":                TokenType.KW_IF,
+    "to":                TokenType.KW_TO,
+
+    "------------------": TokenType.CAT_GLOABL,
+    "-----------------": TokenType.CAT_TARGET
 }
 
 

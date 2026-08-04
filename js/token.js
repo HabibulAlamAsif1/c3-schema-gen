@@ -1,16 +1,20 @@
 export const TokenType = Object.freeze({
     WORD: 0,
-    KW_DEFAULT: 1,
-    KW_OR: 2,
-    KW_AND: 3,
-    KW_ONE: 4,
-    KW_OF: 5,
-    T_BOOL: 6,
-    T_STRING: 7,
-    COMMA: 8,
-    COLON: 9,
-    DOT: 10,
-    QUOTE: 11
+    COMMA: 1,
+    COLON: 2,
+    DOT: 3,
+    QUOTE: 4,
+    T_BOOL: 5,
+    T_STRING: 6,
+    CAT_GLOABL: 7,
+    CAT_TARGET: 8,
+    KW_TO: 9,
+    KW_ONE: 10,
+    KW_OF: 11,
+    KW_OR: 12,
+    KW_AND: 13,
+    KW_DEFAULT: 14,
+    KW_IF: 15,
 })
 
 export class Token {
