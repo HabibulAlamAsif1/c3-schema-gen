@@ -92,13 +92,7 @@ export function tokenize(text = "") {
             
             case ':':     appendOperator(TokenType.COLON); break
             case ',':     appendOperator(TokenType.COMMA); break
-            case '.':     appendOperator(TokenType.DOT); break
-            
-            case '(':     appendOperator(TokenType.PAREN_OPEN); break
-            case ')':     appendOperator(TokenType.PAREN_CLOSE); break
-
-            case '"':
-            case '\'':    appendOperator(TokenType.QUOTE); break 
+            case '.':     appendOperator(TokenType.DOT); break 
             
             default:      token.val += curr()
         }
