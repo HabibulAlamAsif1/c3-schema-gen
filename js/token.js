@@ -15,8 +15,9 @@ export const TokenType = Object.freeze({
     KW_AND: 13,
     KW_DEFAULT: 14,
     KW_IF: 15,
-    T_BOOL: 16,
+    KW_IS: 16,
     T_STRING: 17,
+    T_BOOL: 18,
 })
 
 export class Token {

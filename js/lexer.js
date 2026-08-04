@@ -34,6 +34,7 @@ const wordMap = {
     "one":               TokenType.KW_ONE,
     "of":                TokenType.KW_OF,
     "if":                TokenType.KW_IF,
+    "is":                TokenType.KW_IS,
     "to":                TokenType.KW_TO,
 
     "------------------": TokenType.CAT_GLOABL,
