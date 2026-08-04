@@ -110,8 +110,3 @@ export function tokenize(text = "") {
 
     return tokenArr
 }
-
-// test
-tokenize(
-    "  linux-libc                         Set the libc to use for Linux. Valid options are 'host', 'gnu' and 'musl', default is 'host'"
-).forEach(token => console.log(`${token.val} | ${token.type}`));
