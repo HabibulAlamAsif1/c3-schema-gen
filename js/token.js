@@ -1,4 +1,4 @@
-const TokenType = Object.freeze({
+export const TokenType = Object.freeze({
     WORD: 0,
     KW_DEFAULT: 1,
     KW_ENABLE: 2,
@@ -20,7 +20,7 @@ const TokenType = Object.freeze({
     QUOTE: 18
 })
 
-class Token {
+export class Token {
     /**
      * @param {string} val 
      * @param {number} type 
