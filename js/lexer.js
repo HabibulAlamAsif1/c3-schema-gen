@@ -84,10 +84,11 @@ export function tokenize(text = "") {
     while (!atEnd()) {
         switch (curr()) {
             case ' ':
-            case '\n':
             case '\r':
             case '\t':
             case '\v':    appendWord(); break
+
+            case '\n':    appendOperator(TokenType.END); break
             
             case ':':     appendOperator(TokenType.COLON); break
             case ',':     appendOperator(TokenType.COMMA); break
