@@ -1,16 +1,56 @@
 import {Token, TokenType} from './token.js'
 
 
-/**
- * @param {string} text
- * @returns {Token[]}
-*/
-export function tokenize(text) {
+// NOTE: if a keyword ends with 's' but follows a different pattern than regular plurals
+// then it also must be declared here with the last character omitted
+const wordMap = {
+    "default":           TokenType.KW_DEFAULT,
+
+    "on":                TokenType.T_BOOL,
+    "off":               TokenType.T_BOOL,
+    "true":              TokenType.T_BOOL,
+    "false":             TokenType.T_BOOL,
+    "enable":            TokenType.T_BOOL,
+    "disable":           TokenType.T_BOOL,
+    "enable/disable":    TokenType.T_BOOL,
+    "bool":              TokenType.T_BOOL,
+    "boolean":           TokenType.T_BOOL,
+
+    "directory":         TokenType.T_STRING,
+    "directorie":        TokenType.T_STRING,
+    "file":              TokenType.T_STRING,
+    "path":              TokenType.T_STRING,
+
+    "version":           TokenType.T_STRING,
+    "name":              TokenType.T_STRING,
+    "string":            TokenType.T_STRING,
+
+    "or":                TokenType.KW_OR,
+    "and":               TokenType.KW_AND,
+    "one":               TokenType.KW_ONE,
+    "of":                TokenType.KW_OF
+}
+
+
+function mapWordToType(word = "") {
+    word  = word.toLowerCase()
+    if (word[-1] === 's') { word = word.slice(0, -1) } // if last character is 's' omit it
+
+    if (word in wordMap) { return wordMap[word] }
+
+    return TokenType.WORD
+}
+
+
+/**@returns {Token[]}*/
+export function tokenize(text = "") {
 
     function atEnd() { return i >= text.length }
     function curr() { return text[i] }
-
+    
     function appendWord() {
+        token.type = mapWordToType(token.val)
+
         tokenArr.push(token)
         token = new Token("", 0)
     }
@@ -19,6 +59,7 @@ export function tokenize(text) {
         appendWord()
         tokenArr.push(new Token(curr(), type))
     }
+
 
     let i = 0
 
@@ -58,5 +99,5 @@ export function tokenize(text) {
 
 // test
 tokenize(
-    "placeholder  Placeholder variable name for prototyping: foo, bar, baz."
+    "true false foo name of enable/disable or default bar"
 ).forEach(token => console.log(`${token.val} | ${token.type}`));
