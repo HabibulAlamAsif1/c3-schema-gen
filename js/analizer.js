@@ -1,6 +1,5 @@
 import { Property, Option } from "./props.js";
 import { Token, TokenType } from "./token.js";
-import { tokenize } from "./lexer.js";
 
 
 const State = Object.freeze({
@@ -247,34 +246,3 @@ export function analize(tokens) {
 
     return props
 }
-
-
-const test = analize(splitTokens(tokenize(
-    `Project properties
-    ------------------
-      $schema                            A JSON schema url
-      win-subsystem                      Windows subsystem: CONSOLE (default), WINDOWS (default if @winmain present), NATIVE, POSIX, BOOT_APPLICATION, EFI_APPLICATION, EFI_BOOT_SERVICE_DRIVER, EFI_ROM or EFI_RUNTIME_DRIVER.
-      linux-libc                         Set the libc to use for Linux. Valid options are 'host', 'gnu' and 'musl', default is 'host'
-      riscv-cpu                          Set general level of RISC-V cpu: \`rvi\`, \`rvimac\`, \`rvimafc\`, \`rvgc\` or \`rvgcv\`.
-      linker                             'builtin' for the builtin linker, 'cc' for the system linker or <path> to a custom compiler.
-
-    Target properties
-    -----------------
-      android-api                        Set Android API version.
-      use-stdlib                         Include the standard library (default: true).
-    `
-)))
-
-console.log(JSON.stringify(test, null, 2))
-
-// console.log(test.target)
-
-// console.log('Global')
-// for (const tokenRow of test.global) {
-//     for (const token of tokenRow) { console.log(token) }
-// }
-
-// console.log('Target')
-// for (const tokenRow of test.target) {
-//     for (const token of tokenRow) { console.log(token) }
-// }
