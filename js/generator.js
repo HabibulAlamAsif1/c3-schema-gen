@@ -3,8 +3,12 @@ import { analize, splitTokens } from "./analizer.js"
 import { tokenize } from "./lexer.js"
 
 
-/** @param {Object.<string, Property>} props */
-export function generateSchema(props) {
+/** 
+ * @param {Object.<string, Property>} props
+ * @param {string[]} targets 
+ * @returns {Object}
+ */
+export function generateSchemaObject(props, targets) {
 
     // default
     let output = {
@@ -28,57 +32,72 @@ export function generateSchema(props) {
         }
     }
 
-    for (const [key, prop] of Object.entries(props)) {
-        let schema = {}
-        let location = output.properties
+    function core(props, location, ignore) {
 
-        schema["description"] = prop.description
-        schema["default"] = prop.defaultv
+        for (const [key, prop] of Object.entries(props)) {
 
-        // handle global prop vs target prop
-        if (!prop.isGlobal) { location = output.properties.targets.additionalProperties.properties }
+            if (key === ignore) { continue }
 
-        // configure type
-        if (prop.isArray) {
-            schema["type"] = "array"
-            
-            if (prop.type !== "") { schema["items"] = { "type": prop.type } }
-        } else if (prop.type !== "") {
-            schema["type"] = prop.type
-        }
+            let schema = {}
 
-        // handle options
-        if (prop.hasOptDesc) {
-            
-            schema["oneof"] = []
+            schema["description"] = prop.description
+            schema["default"] = prop.defaultv
 
-            for (const option of prop.options) {
-                schema["oneof"].push({
-                    "const": option.opt,
-                    "description": option.desc
-                })
+            // configure type
+            if (prop.isGlobal) {
+                schema["type"] = "array"
+                
+                if (prop.type !== "") { schema["items"] = { "type": prop.type } }
+            } else if (prop.type !== "") {
+                schema["type"] = prop.type
             }
 
-        } else {
-            schema["enum"] = []
+            // handle options
+            if (prop.hasOptDesc) {
+                
+                schema["oneof"] = []
 
-            for (const option of prop.options) {
-                schema["enum"].push(option.opt)
+                for (const option of prop.options) {
+                    schema["oneof"].push({
+                        "const": option.opt,
+                        "description": option.desc
+                    })
+                }
+
+            } else {
+                schema["enum"] = []
+
+                for (const option of prop.options) {
+                    schema["enum"].push(option.opt)
+                }
             }
-        }
 
-        location[key] = schema
+            location[key] = schema
+        }
     }
+
+    core(props, output.properties, "TARGET")
+    core(props["TARGET"], output.properties.targets.additionalProperties.properties, "")
+
+    // set targets
+    if ("target" in output.properties) { output.properties["target"]["enum"] = targets }
+    if ("target" in output.properties.targets.additionalProperties.properties) { output.properties.targets.additionalProperties.properties["target"]["enum"] = targets }
 
     return output
 }
 
 
-const test = generateSchema( analize( splitTokens( tokenize(
+const test = generateSchemaObject( analize( splitTokens( tokenize(
     `Project properties
     ------------------
-    $schema                            Json schema url
+    placeholder    Placeholder variable names: foo, bar, baz, lol (default if fun), default is foo.
+    target         Compilation target.
+
+    Target properties
+    -----------------
+    type          Target type. The options are executable or library.
+    target        Compilation target.
     `
-))))
+))), ["windows", "mingw", "linux", "macos", "bsd", "android"])
 
 console.log(JSON.stringify(test, null, 2))

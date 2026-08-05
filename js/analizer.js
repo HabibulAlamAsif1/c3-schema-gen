@@ -215,13 +215,11 @@ export function analize(tokens) {
 
     let state = State.DESC
     let currentOption = -1
-    let isPropGlobal = true
-    let stage = "global"
 
-    let prop = new Property(false, "", "", "", false, [], isPropGlobal)
-    let props = {}
+    let prop = new Property(false, "", "", "", false, [])
+    let props = {TARGET: {}}
 
-    for (let i = 0; i < Object.keys(tokens).length; i++) {
+    function core(location, stage) {
 
         for (const tokenRow of /**@type {Token[][]} */ (tokens[stage])) {
 
@@ -234,17 +232,17 @@ export function analize(tokens) {
                 k += testToken(tokenRow, k)
             }
 
-            prop.isGlobal = isPropGlobal
-            props[key] = prop
+            location[key] = prop
 
             state = State.DESC
-            prop = new Property(false, "", "", "", false, [], false)
+            prop = new Property(false, "", "", "", false, [])
         }
 
         currentOption = -1
-        stage = "target"
-        isPropGlobal = false
     }
+
+    core(props, "global")
+    core(props.TARGET, "target")
        
 
     return props
