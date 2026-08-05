@@ -38,8 +38,8 @@ const wordMap = {
     "and":               TokenType.KW_AND,
     "or":                TokenType.KW_OR,
     "of":                TokenType.KW_OF,
-    "if":                TokenType.KW_IF,
-    "is":                TokenType.KW_IS,
+    "i":                 TokenType.KW_IS,
+    "to":                TokenType.KW_TO,
 
     "------------------": TokenType.CAT_GLOABL,
     "-----------------": TokenType.CAT_TARGET
@@ -95,13 +95,14 @@ export function tokenize(text = "") {
 
             case '\n':    appendOperator(TokenType.END); break
 
-            case ')':     appendOperator(TokenType.PAREN_OPEN); break
-            case '(':     appendOperator(TokenType.PAREN_CLOSE); break
+            case '(':     appendOperator(TokenType.PAREN_OPEN); break
+            case ')':     appendOperator(TokenType.PAREN_CLOSE); break
             
             case ',':
             case '.':     appendOperator(TokenType.SEPARATOR); break
 
             case '"':
+            case '`':
             case '\'':    break
             
             case ':':     appendOperator(TokenType.COLON); break

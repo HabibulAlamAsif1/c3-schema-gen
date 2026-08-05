@@ -14,13 +14,13 @@ export const TokenType = Object.freeze({
     KW_OF: 11,
     KW_AND: 12,
     KW_OR: 13,
-    KW_IF: 14,
-    KW_IS: 15,
-    KW_DEFAULT: 16,
+    KW_IS: 14,
+    KW_DEFAULT: 15,
+    KW_TO: 16,
 
-    T_STRING: 17,
-    T_BOOL: 18,
-    T_LIST: 19,
+    T_BOOL: 17,
+    T_LIST: 18,
+    T_STRING: 19,
 
     END: 20,
 })

@@ -1,41 +1,4 @@
-// const prop = {
-//     "targets": {
-//         htmc: {
-//             "type": {
-//                 isArray: false,
-//                 type: "string",
-//                 "description": ""
-//             },
-//             "sources": {
-//                 isArray: true, // inferred from key ending with 's'
-//                 type: "string" // inferred from isArray being true
-//             }
-//         }
-//     },
-//     "win-subsystem": {
-//         isArray: true,
-//         type: "string", // inferred from isArray being true
-//         default: "CONSOLE",
-//         description: "Windows subsystem",
-//         options: [
-//             {
-//                 opt: "WINDOWS",
-//                 desc: "default if @winmain present"
-//             },
-//             {
-//                 opt: "NATIVE",
-//                 desc: ""
-//             },
-//             {
-//                 opt: "POSIX",
-//                 desc: ""
-//             }
-//             ...
-//         ]
-//     }
-// }
-
-class Option {
+export class Option {
 
     /**
      * @param {string} opt 
@@ -55,7 +18,8 @@ export class Property {
      * @param {string} defaultv 
      * @param {string} description 
      * @param {boolean} hasOptDesc 
-     * @param {Option[]} options 
+     * @param {Option[]} options
+     * @param {boolean} isGlobal 
      */
     constructor(isArray, type, defaultv, description, hasOptDesc, options, isGlobal) {
         this.isArray = isArray

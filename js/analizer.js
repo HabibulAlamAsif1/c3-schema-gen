@@ -1,36 +1,48 @@
-import { Property } from "./props.js";
+import { Property, Option } from "./props.js";
 import { Token, TokenType } from "./token.js";
 import { tokenize } from "./lexer.js";
 
 
 const State = Object.freeze({
-    KEY: 0,
-    DESC: 1,
-    OPTIONs: 2,
+    DESC: 0,
+    OPTIONS: 1,
+    OPT_DESC: 2
 })
 
 
 /**
  * @param {Token[]} tokenArr
- * @returns {Token[][]}
+ * @returns {{global: Token[][], target: Token[][]}}
  */
-function findProperties(tokenArr) {
+function splitTokens(tokenArr) {
     function atEnd() { return i >= tokenArr.length }
     function curr() { return tokenArr[i] }
 
     let i = 0
 
-    /**@type {Token[]} */
-    let tokenRow = []
+    let target = "NAN"
 
-    /**@type {Token[][]} */
-    let output = []
+    let tokenRow = []
+    let output = {global: [], target: []}
 
     while (!atEnd()) {
 
         if (curr().type == TokenType.END) {
-            output.push(tokenRow)
+            
+            if (target === "global") { output.global.push(tokenRow) }
+            else if (target === "target") { output.target.push(tokenRow) }
+
             tokenRow = []
+
+        } else if (curr().type == TokenType.CAT_GLOABL) {
+            target = "global"
+            i++
+
+        } else if (curr().type == TokenType.CAT_TARGET) {
+            target = "target"
+            output.global.pop()
+            i++
+
         } else {
             tokenRow.push(curr())
         }
@@ -41,16 +53,228 @@ function findProperties(tokenArr) {
     return output
 }
 
+function charSinceLastSpace(text = "") {
+    let i = text.length - 1
+    let output = 0
 
-/**
- * @param {Token[][]} tokMatrix
- * @returns {Property[]}
- */
-export function analize(tokMatrix) {
+    
+    while (i > 0) {
+        if (text[i] == ' ') { break }
+
+        i--
+        output++
+    }
+    
+    return output
 }
 
 
-console.log(findProperties(tokenize(
-    `  linux-libc                         Set the libc to use for Linux. Valid options are 'host', 'gnu' and 'musl', default is 'host'
-       win-subsystem                      Windows subsystem: CONSOLE (default), WINDOWS (default if @winmain present), NATIVE, POSIX, BOOT_APPLICATION, EFI_APPLICATION, EFI_BOOT_SERVICE_DRIVER, EFI_ROM or EFI_RUNTIME_DRIVER.\n`
+/** @param {{global: Token[][], target: Token[][]}} tokens*/
+export function analize(tokens) {
+
+    function handleWord(word = "", prefix = ' ') {
+        if (state == State.DESC) {
+            prop.description += prefix + word
+            return
+        }
+
+        if (state == State.OPTIONS) {
+            prop.options.push(new Option(word, "" ))
+            currentOption++
+            return
+        }
+        
+        prop.options[currentOption].desc += word + ' '
+        prop.hasOptDesc = true
+    }
+
+    function listEntered() {
+        state = State.OPTIONS
+        prop.isArray = true
+        prop.type = "string"
+    }
+
+    function typeCheck(type) {
+        if (type == TokenType.T_BOOL) {
+            prop.type = "boolean"
+            return
+        }
+
+        if (type == TokenType.T_STRING) {
+            prop.type = "string"
+            return
+        }
+    }
+
+    function testToken(/**@type {Token[]}*/ tokenRow, i = 0) {
+        
+        function peek(by) { return tokenRow[i + by] }
+        function peekBack(by) { return tokenRow[i - by] }
+
+        let idx = 0
+        const token = tokenRow[i]
+
+        switch (token.type) {
+
+            case TokenType.KW_DEFAULT:
+                if (peek(1).type == TokenType.KW_IS || peek(1).type == TokenType.COLON || peek(1).type == TokenType.KW_TO) {
+                    prop.defaultv = peek(2).val
+                    typeCheck(peek(2).type)
+
+                    idx += 2
+                    break
+                }
+
+                if (peek(1).type == TokenType.PAREN_CLOSE) {
+                    prop.defaultv = peekBack(2).val
+                    break
+                }
+
+                handleWord(token.val)
+                break
+
+            case TokenType.KW_ONE:
+                if (peek(1).type == TokenType.KW_of) {
+                    listEntered()
+                    idx++
+                    break
+                }
+
+                handleWord(token.val)
+                break
+
+            case TokenType.T_LIST:
+                if (peek(1).type == TokenType.KW_ARE) {
+                    listEntered()
+                    prop.description = prop.description.slice(0, -charSinceLastSpace(prop.description))
+                    idx++
+                    break
+                }
+
+                handleWord(token.val)
+                break
+
+            case TokenType.COLON:
+                listEntered()
+                break
+
+            case TokenType.T_BOOL:
+                prop.type = "boolean"
+                handleWord(token.val)
+                break
+            
+            case TokenType.T_STRING:
+                prop.type = "string"
+                handleWord(token.val)
+                break
+                
+            case TokenType.PAREN_OPEN:
+                if (state == State.OPTIONS) {
+                    state = State.OPT_DESC
+                    break
+                }
+
+                if (peek(1).type == TokenType.KW_DEFAULT) { break }
+
+                handleWord(token.val)
+                break
+
+            case TokenType.PAREN_CLOSE:
+                if (state == State.OPT_DESC) {
+                    state = State.OPTIONS
+                    break
+                }
+
+                if (peekBack(1).type == TokenType.KW_DEFAULT) { break }
+
+                handleWord(token.val)
+                break
+            
+            case TokenType.SEPARATOR:
+                if (state == State.OPTIONS) { break }
+                handleWord(token.val, "")
+                break
+
+            case TokenType.KW_OR:
+            case TokenType.KW_AND:
+                if (state == State.OPTIONS) { break }
+
+            case TokenType.KW_IS:
+            case TokenType.KW_TO:
+            case TokenType.WORD:
+                handleWord(token.val)
+                break
+
+        }
+
+        return idx;
+    }
+
+
+    let state = State.DESC
+    let currentOption = -1
+    let isPropGlobal = true
+    let stage = "global"
+
+    let prop = new Property(false, "", "", "", false, [], isPropGlobal)
+    let props = {}
+
+    for (let i = 0; i < Object.keys(tokens).length; i++) {
+
+        for (const tokenRow of /**@type {Token[][]} */ (tokens[stage])) {
+
+            if (tokenRow.length == 0) { continue }
+
+            const key = tokenRow[0].val
+
+            for (let k = 1; k < tokenRow.length; k++) {
+
+                k += testToken(tokenRow, k)
+            }
+
+            prop.isGlobal = isPropGlobal
+            props[key] = prop
+
+            state = State.DESC
+            prop = new Property(false, "", "", "", false, [], false)
+        }
+
+        currentOption = -1
+        stage = "target"
+        isPropGlobal = false
+    }
+       
+
+    return props
+}
+
+
+const test = analize(splitTokens(tokenize(
+    `Project properties
+    ------------------
+      $schema                            A JSON schema url
+      win-subsystem                      Windows subsystem: CONSOLE (default), WINDOWS (default if @winmain present), NATIVE, POSIX, BOOT_APPLICATION, EFI_APPLICATION, EFI_BOOT_SERVICE_DRIVER, EFI_ROM or EFI_RUNTIME_DRIVER.
+      linux-libc                         Set the libc to use for Linux. Valid options are 'host', 'gnu' and 'musl', default is 'host'
+      riscv-cpu                          Set general level of RISC-V cpu: \`rvi\`, \`rvimac\`, \`rvimafc\`, \`rvgc\` or \`rvgcv\`.
+      linker                             'builtin' for the builtin linker, 'cc' for the system linker or <path> to a custom compiler.
+
+    Target properties
+    -----------------
+      android-api                        Set Android API version.
+      use-stdlib                         Include the standard library (default: true).
+    `
 )))
+
+console.log(JSON.stringify(test, null, 2))
+
+// console.log(test.target)
+
+// console.log('Global')
+// for (const tokenRow of test.global) {
+//     for (const token of tokenRow) { console.log(token) }
+// }
+
+// console.log('Target')
+// for (const tokenRow of test.target) {
+//     for (const token of tokenRow) { console.log(token) }
+// }
