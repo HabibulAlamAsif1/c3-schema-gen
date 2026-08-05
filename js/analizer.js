@@ -68,7 +68,10 @@ function charSinceLastSpace(text = "") {
 }
 
 
-/** @param {{global: Token[][], target: Token[][]}} tokens*/
+/**
+ * @param {{global: Token[][], target: Token[][]}} tokens
+ * @returns {Object.<string, Property>}
+*/
 export function analize(tokens) {
 
     function handleWord(word = "", prefix = ' ') {
