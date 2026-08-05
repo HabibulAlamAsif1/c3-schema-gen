@@ -12,6 +12,9 @@
     --br1: 6px;
 
     --accent: #187ef1;
+    --accent-hover: #3f96f9;
+    --accent-click: #166dd1;
+
     --sec: #923af1;
 
     --main:        light-dark(#f4f4f4,  #171821);

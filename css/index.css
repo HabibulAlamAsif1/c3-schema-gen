@@ -21,8 +21,11 @@ main {
 }
 
 #generate {
-    width: 8rem;
-    height: 2rem;
+    width: 10rem;
+    height: 2.3rem;
+
+    color: white;
+    font-weight: bold;
 
     border-radius: var(--br1);
     border: 0;
@@ -30,6 +33,14 @@ main {
     background-color: var(--accent);
     
     align-self: center;
+
+    transition: background-color 0.2s ease;
+}
+
+#generate:hover, #generate:focus { background-color: var(--accent-hover)}
+#generate:active {
+    background-color: var(--accent-click);
+    scale: 0.95;
 }
 
 .text-fields {
