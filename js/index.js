@@ -47,20 +47,3 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     root.style.colorScheme = "dark"
     root.dataset.theme = "dark"
 }
-
-
-inputBoxProps.value = `
-Project properties
-------------------
-$shema     A JSON scheam url.
-placeholder  Placeholder variable names: foo (default), bar, baz. 
-target    Compilation target.
-
-Target properties
------------------
-target    Compilation target.
-`
-
-inputBoxTargets.value = `windows
-macos
-linux`
