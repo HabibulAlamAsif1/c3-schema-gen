@@ -13,7 +13,7 @@ const State = Object.freeze({
  * @param {Token[]} tokenArr
  * @returns {{global: Token[][], target: Token[][]}}
  */
-function splitTokens(tokenArr) {
+export function splitTokens(tokenArr) {
     function atEnd() { return i >= tokenArr.length }
     function curr() { return tokenArr[i] }
 
