@@ -13,14 +13,31 @@ header {
     text-align: center;
 }
 
-main { padding: var(--p1); }
+main {
+    display: flex;
+    flex-direction: column;
+
+    padding: var(--p1); 
+}
+
+#generate {
+    width: 8rem;
+    height: 2rem;
+
+    border-radius: var(--br1);
+    border: 0;
+
+    background-color: var(--accent);
+    
+    align-self: center;
+}
 
 .text-fields {
     display: grid;
 
-    grid-template-columns: 1.5fr 2fr;
+    grid-template-columns: 1fr 1fr;
 
-    padding: var(--p3);
+    padding: var(--p1) var(--p3) var(--p1) var(--p3);
     gap: var(--p1);
 }
 
@@ -87,7 +104,7 @@ textarea:focus { outline: 0; }
 
 @media screen and (max-width: 480px) {
     .text-fields {
-        padding: 0;
+        padding: var(--p2) 0 var(--p2) 0;
         grid-template-columns: 1fr;
     }
 
