@@ -85,19 +85,3 @@ export function generateSchemaObject(props, targets) {
 
     return output
 }
-
-
-const test = generateSchemaObject( analize( splitTokens( tokenize(
-    `Project properties
-    ------------------
-    placeholder    Placeholder variable names: foo, bar, baz, lol (default if fun), default is foo.
-    target         Compilation target.
-
-    Target properties
-    -----------------
-    type          Target type. The options are executable or library.
-    target        Compilation target.
-    `
-))), ["windows", "mingw", "linux", "macos", "bsd", "android"])
-
-console.log(JSON.stringify(test, null, 2))
