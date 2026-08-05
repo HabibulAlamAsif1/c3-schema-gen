@@ -44,7 +44,27 @@ export function generateSchema(props) {
             
             if (prop.type !== "") { schema["items"] = { "type": prop.type } }
         } else if (prop.type !== "") {
-            scheam["type"] = prop.type
+            schema["type"] = prop.type
+        }
+
+        // handle options
+        if (prop.hasOptDesc) {
+            
+            schema["oneof"] = []
+
+            for (const option of prop.options) {
+                schema["oneof"].push({
+                    "const": option.opt,
+                    "description": option.desc
+                })
+            }
+
+        } else {
+            schema["enum"] = []
+
+            for (const option of prop.options) {
+                schema["enum"].push(option.opt)
+            }
         }
 
         location[key] = schema
