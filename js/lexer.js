@@ -31,14 +31,15 @@ const wordMap = {
 
     "option":            TokenType.T_LIST,
     "list":              TokenType.T_LIST,
+    "array":             TokenType.T_LIST,
 
-    "or":                TokenType.KW_OR,
-    "and":               TokenType.KW_AND,
+    "are":               TokenType.KW_ARE,
     "one":               TokenType.KW_ONE,
+    "and":               TokenType.KW_AND,
+    "or":                TokenType.KW_OR,
     "of":                TokenType.KW_OF,
     "if":                TokenType.KW_IF,
     "is":                TokenType.KW_IS,
-    "to":                TokenType.KW_TO,
 
     "------------------": TokenType.CAT_GLOABL,
     "-----------------": TokenType.CAT_TARGET
@@ -47,7 +48,11 @@ const wordMap = {
 
 function mapWordToType(word = "") {
     word  = word.toLowerCase()
-    if (word[-1] === 's') { word = word.slice(0, -1) } // if last character is 's' omit it
+
+    // if last character is 's' omit it
+    if (word[word.length - 1] === 's') {
+        word = word.slice(0, -1);
+    }
 
     if (word in wordMap) { return wordMap[word] }
 
@@ -90,14 +95,16 @@ export function tokenize(text = "") {
 
             case '\n':    appendOperator(TokenType.END); break
 
-            case '(':
-            case ')':
+            case ')':     appendOperator(TokenType.PAREN_OPEN); break
+            case '(':     appendOperator(TokenType.PAREN_CLOSE); break
+            
+            case ',':
+            case '.':     appendOperator(TokenType.SEPARATOR); break
+
             case '"':
             case '\'':    break
             
             case ':':     appendOperator(TokenType.COLON); break
-            case ',':     appendOperator(TokenType.COMMA); break
-            case '.':     appendOperator(TokenType.DOT); break 
             
             default:      token.val += curr()
         }
