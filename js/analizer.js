@@ -73,6 +73,29 @@ function charSinceLastSpace(text = "") {
 */
 export function analize(tokens) {
 
+    function evaluateKey(key = "") {
+        if (key[key.length - 1] == 's') { prop.isArray = true }
+    }
+    
+    function evaluateType() {
+        let highest = typeChance.number
+        prop.type = "number"
+
+        if (typeChance.boolean >= highest) {
+            highest = typeChance.boolean
+            prop.type = "boolean"
+        }
+
+        if (typeChance.string >= highest) {
+            highest = typeChance.string
+            prop.type = "string"
+        }
+
+        if (typeChance.ambiguous >= highest) {
+            prop.type = ""
+        }
+    }
+
     function handleWord(word = "", prefix = ' ') {
         if (state == State.DESC) {
             prop.description += prefix + word
@@ -215,6 +238,9 @@ export function analize(tokens) {
     let state = State.DESC
     let currentOption = -1
 
+    // ordered least likely to most in case of values being equal
+    let typeChance = {"number": 0, "boolean": 0, "string": 0, "ambiguous": 0}
+
     let prop = new Property(false, "", "", "", false, [])
     let props = {TARGET: {}}
 
@@ -225,12 +251,14 @@ export function analize(tokens) {
             if (tokenRow.length == 0) { continue }
 
             const key = tokenRow[0].val
+            evaluateKey(key)
 
-            for (let k = 1; k < tokenRow.length; k++) {
+            for (let i = 1; i < tokenRow.length; i++) {
 
-                k += testToken(tokenRow, k)
+                i += testToken(tokenRow, i)
             }
 
+            evaluateType()
             location[key] = prop
 
             state = State.DESC
