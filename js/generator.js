@@ -2,7 +2,6 @@ import { Property, Option } from "./props.js"
 
 
 /** 
- * @param {Object.<string, Property>} props
  * @param {string[]} targets 
  * @returns {Object}
  */
@@ -35,6 +34,16 @@ export function generateSchemaObject(props, targets) {
 
     function core(props, location, ignore) {
 
+        function getDefault(type = "", value = "") {
+            switch (type) {
+                case "string":     return value
+                case "boolean":    return Boolean(value)
+                case "number":     return Number(value)
+
+                default:
+            }
+        }
+
         for (const [key, prop] of Object.entries(props)) {
 
             if (key === ignore || key === "targets") { continue }
@@ -42,14 +51,14 @@ export function generateSchemaObject(props, targets) {
             let schema = {}
 
             schema["description"] = prop.description
-            schema["default"] = prop.defaultv
 
             // configure type
-            if (prop.isGlobal) {
+            if (prop.isArray) {
                 schema["type"] = "array"
                 
                 if (prop.type !== "") { schema["items"] = { "type": prop.type } }
             } else if (prop.type !== "") {
+
                 schema["type"] = prop.type
             }
 
@@ -71,6 +80,13 @@ export function generateSchemaObject(props, targets) {
                 for (const option of prop.options) {
                     schema["enum"].push(option.opt)
                 }
+            }
+
+            // handle default
+            if (prop.isArray) {
+                prop.defaultv = [getDefault(prop.type, prop,defaultv)]
+            } else {
+                prop.defaultv = getDefault(prop.type, prop.defaultv)
             }
 
             location[key] = schema
