@@ -3,8 +3,6 @@ import { analize, splitTokens } from "./analizer.js"
 import { generateSchemaObject } from "./generator.js"
 import { getTargetsList } from "./targets.js"
 
-const root = document.documentElement 
-
 const inputBoxProps = document.getElementById("input-box-props")
 const inputBoxTargets = document.getElementById("input-box-targets")
 const outputBox = document.getElementById("output-box")
@@ -42,9 +40,3 @@ generateBtn.addEventListener("click", () => {
         getTargetsList(inputBoxTargets.value)
     ), null, 2)
 })
-
-
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    root.style.colorScheme = "dark"
-    root.dataset.theme = "dark"
-}

@@ -68,6 +68,12 @@
         <div style="height: 4rem;"></div>
     </main>
 
+    <script>
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.style.colorScheme = "dark"
+            document.documentElement.dataset.theme = "dark"
+        }
+    </script>
     <script type="module" src="js/index.js"></script>
 </body>
 </html>
