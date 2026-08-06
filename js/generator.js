@@ -25,7 +25,10 @@ export function generateSchemaObject(props, targets) {
                 "additionalProperties": {
                     "required": ["type"],
                     "properties": {}
-                }
+                },
+
+                "description": "Set of targets for the project.",
+                "default": {"myapp": {"type": "executable"}}
             }
         }
     }
