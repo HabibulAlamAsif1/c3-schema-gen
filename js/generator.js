@@ -34,7 +34,7 @@ export function generateSchemaObject(props, targets) {
 
         for (const [key, prop] of Object.entries(props)) {
 
-            if (key === ignore) { continue }
+            if (key === ignore || key === "targets") { continue }
 
             let schema = {}
 
