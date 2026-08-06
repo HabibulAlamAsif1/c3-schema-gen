@@ -42,6 +42,13 @@ generateBtn.addEventListener("click", () => {
 })
 
 
+for (const pasteBtn of document.getElementsByClassName("paste-btn")) { pasteBtn.addEventListener("click", (e) => {
+    const textbox = e.target.parentElement.parentElement.querySelector("textarea")
+
+    navigator.clipboard.readText().then((value) => { textbox.value = value })
+}) }
+
+
 document.getElementById("copy-btn").addEventListener("click", async (e) => {
     try {
         await navigator.clipboard.writeText(outputBox.value)
