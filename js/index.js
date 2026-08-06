@@ -1,6 +1,7 @@
 import { tokenize } from "./lexer.js"
 import { analize, splitTokens } from "./analizer.js"
 import { generateSchemaObject } from "./generator.js"
+import { getTargetsList } from "./targets.js"
 
 const root = document.documentElement 
 
@@ -38,7 +39,7 @@ generateBtn.addEventListener("click", () => {
 
     outputBox.value = JSON.stringify(generateSchemaObject(
         analize( splitTokens( tokenize( inputBoxProps.value))),
-        inputBoxTargets.value.split('\n')
+        getTargetsList(inputBoxTargets.value)
     ), null, 2)
 })
 
