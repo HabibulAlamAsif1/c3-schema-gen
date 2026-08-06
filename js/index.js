@@ -48,6 +48,10 @@ for (const pasteBtn of document.getElementsByClassName("paste-btn")) { pasteBtn.
     navigator.clipboard.readText().then((value) => { textbox.value = value })
 }) }
 
+for (const clearBtn of document.getElementsByClassName("clear-btn")) { clearBtn.addEventListener("click", (e) => {
+    const textbox = e.target.parentElement.parentElement.querySelector("textarea")
+    textbox.value = ""
+}) }
 
 document.getElementById("copy-btn").addEventListener("click", async (e) => {
     try {
