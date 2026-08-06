@@ -124,7 +124,7 @@ export function analize(tokens) {
                     prop.defaultv = peek(2).val
                     typeCheck(peek(2).type)
 
-                    idx += 2
+                    idx += 3
                     break
                 }
 
