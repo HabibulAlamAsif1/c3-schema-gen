@@ -1,7 +1,5 @@
 import { Property, Option } from "./props.js";
 import { Token, TokenType } from "./token.js";
-import { tokenize } from "./lexer.js"
-
 
 const State = Object.freeze({
     DESC: 0,
