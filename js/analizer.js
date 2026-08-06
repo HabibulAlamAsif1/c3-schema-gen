@@ -86,7 +86,7 @@ export function analize(tokens) {
             currentOption++
             return
         }
-        
+
         prop.options[currentOption].desc += word + ' '
         prop.hasOptDesc = true
     }
@@ -234,12 +234,13 @@ export function analize(tokens) {
             }
 
             location[key] = prop
+            console.log(key)
 
             state = State.DESC
             prop = new Property(false, "", "", "", false, [])
+            currentOption = -1
         }
 
-        currentOption = -1
     }
 
     core(props, "global")
@@ -418,6 +419,7 @@ Target properties
   x86cpu                             Set general level of x64 cpu: baseline, ssse3, sse4, avx1, avx2-v1, avx2-v2 (Skylake/Zen1+), avx512 (Icelake/Zen4+), native.
   x86vec                             Set max type of vector use: none, mmx, sse, avx, avx512, native.
   bsd-sysroot                        Set the BSD sysroot directory.
-
 `
 )))
+
+console.log(JSON.stringify(test, null, 2))
