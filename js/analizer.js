@@ -234,7 +234,6 @@ export function analize(tokens) {
             }
 
             location[key] = prop
-            console.log(key)
 
             state = State.DESC
             prop = new Property(false, "", "", "", false, [])
