@@ -40,3 +40,12 @@ generateBtn.addEventListener("click", () => {
         getTargetsList(inputBoxTargets.value)
     ), null, 2)
 })
+
+
+document.getElementById("copy-btn").addEventListener("click", async (e) => {
+    try {
+        await navigator.clipboard.writeText(outputBox.value)
+    } catch (err) {
+        console.log(err.message)
+    }
+})
