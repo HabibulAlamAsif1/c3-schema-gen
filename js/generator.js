@@ -1,4 +1,6 @@
 import { Property, Option } from "./props.js"
+import { tokenize } from "./lexer.js"
+import { analize, splitTokens } from "./analizer.js"
 
 
 /** 
@@ -37,10 +39,14 @@ export function generateSchemaObject(props, targets) {
         function getDefault(type = "", value = "") {
             switch (type) {
                 case "string":     return value
-                case "boolean":    return Boolean(value)
+
+                case "boolean":
+                    if (value === "true") { return true }
+                    return false
+
                 case "number":     return Number(value)
 
-                default:
+                default:           return null
             }
         }
 
@@ -57,8 +63,8 @@ export function generateSchemaObject(props, targets) {
                 schema["type"] = "array"
                 
                 if (prop.type !== "") { schema["items"] = { "type": prop.type } }
-            } else if (prop.type !== "") {
 
+            } else if (prop.type !== "") {
                 schema["type"] = prop.type
             }
 
@@ -74,7 +80,7 @@ export function generateSchemaObject(props, targets) {
                     })
                 }
 
-            } else {
+            } else if (prop.options.length > 0) {
                 schema["enum"] = []
 
                 for (const option of prop.options) {
@@ -83,10 +89,12 @@ export function generateSchemaObject(props, targets) {
             }
 
             // handle default
-            if (prop.isArray) {
-                prop.defaultv = [getDefault(prop.type, prop,defaultv)]
-            } else {
-                prop.defaultv = getDefault(prop.type, prop.defaultv)
+            let schemaDefault = getDefault(prop.type, prop.defaultv)
+
+            if (prop.isArray && schemaDefault !== null) {
+                schema["default"] = [schemaDefault]
+            } else if (schemaDefault !== null) {
+                schema["default"] = schemaDefault
             }
 
             location[key] = schema

@@ -260,6 +260,7 @@ export function analize(tokens) {
             evaluateType()
             location[key] = prop
 
+            typeChance = {"number": 0, "boolean": 0, "string": 0, "ambiguous": 0}
             state = State.DESC
             prop = new Property(false, "", "", "", false, [])
             currentOption = -1
