@@ -74,7 +74,11 @@ function charSinceLastSpace(text = "") {
 export function analize(tokens) {
 
     function evaluateKey(key = "") {
-        if (key[key.length - 1] == 's') { prop.isArray = true }
+        const words = key.split('-')
+
+        for (const word of words) {
+            if (word[word.length - 1] == 's') { prop.isArray = true }
+        }
     }
     
     function evaluateType() {
