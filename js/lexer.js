@@ -21,6 +21,8 @@ const wordMap = {
     "source":            TokenType.T_STRING,
     "file":              TokenType.T_STRING,
     "path":              TokenType.T_STRING,
+    "library":           TokenType.T_STRING,
+    "librarie":          TokenType.T_STRING,
 
     "version":           TokenType.T_STRING,
     "name":              TokenType.T_STRING,
