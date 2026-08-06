@@ -97,20 +97,37 @@ textarea:focus { outline: 0; }
     border: none;
 }
 
-.icon:hover {
+:not(.inactive).icon:hover {
     transition: background-color 0.2s ease;
     background-color: var(--hover) }
 
-.icon:focus {
+:not(.inactive).icon:focus {
     transition: 0s;
     background-color: var(--hover); }
 
-.icon:active { background-color: var(--click); }
-.icon:active .icon-img { scale: 0.9; }
+:not(.inactive).icon:active { background-color: var(--click); }
+:not(.inactive).icon:active .icon-img { scale: 0.9; }
 
 .icon-img {
     height: 1.3rem;
     filter: var(--icon-clr);
+}
+
+#download-btn svg {
+    height: 1.3rem;
+    width: auto;
+}
+
+:not(.inactive)#download-btn:active svg { scale: 0.9; }
+
+#download-btn svg path {
+    fill: var(--accent);
+    stroke: var(--accent);
+}
+
+.inactive#download-btn svg path {
+    fill: var(--inactive);
+    stroke: var(--inactive);
 }
 
 @media screen and (max-width: 480px) {
