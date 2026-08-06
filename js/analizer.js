@@ -114,18 +114,17 @@ export function analize(tokens) {
 
     function listEntered() {
         state = State.OPTIONS
-        prop.isArray = true
-        prop.type = "string"
+        typeChance.string++
     }
 
     function typeCheck(type) {
         if (type == TokenType.T_BOOL) {
-            prop.type = "boolean"
+            typeChance.boolean++
             return
         }
 
         if (type == TokenType.T_STRING) {
-            prop.type = "string"
+            typeChance.string++
             return
         }
     }
@@ -183,12 +182,12 @@ export function analize(tokens) {
                 break
 
             case TokenType.T_BOOL:
-                prop.type = "boolean"
+                typeChance.boolean++
                 handleWord(token.val)
                 break
             
             case TokenType.T_STRING:
-                prop.type = "string"
+                typeChance.string++
                 handleWord(token.val)
                 break
                 
