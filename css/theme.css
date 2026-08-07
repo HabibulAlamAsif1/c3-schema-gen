@@ -5,6 +5,7 @@
 
     --m1: 1rem;
     --m2: 2rem;
+    --m3: 0.5rem;
 
     --fs1: 1rem;
 
@@ -18,13 +19,13 @@
 
     --sec: #923af1;
 
-    --main:        light-dark(#f4f4f4,  #171821);
+    --main:        light-dark(#e1e2f6,  #171821);
     --negative:    light-dark(#1c1c1c,  #fbfbfb);
     --hover:       light-dark(#0000001d,  #ffffff1d);
     --text-clr:    light-dark(#1d1d1d,  #dddddd);
-    --text-grey:   light-dark(#888888,  #888888);
+    --text-grey:   light-dark(#3c3c3c,  #ababab);
     --inactive:    light-dark(#888888,  #888888);
-    --border-clr:  light-dark(#dadada,  #2a2d50);
+    --border-clr:  light-dark(#a0a0e4,  #2a2d50);
     
     --click: #0000003d;
     --icon-clr: none;
