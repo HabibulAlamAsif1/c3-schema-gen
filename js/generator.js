@@ -1,6 +1,4 @@
 import { Property, Option } from "./props.js"
-import { tokenize } from "./lexer.js"
-import { analize, splitTokens } from "./analizer.js"
 
 
 /** 
