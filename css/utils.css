@@ -23,3 +23,7 @@
 }
 
 .gap1 { gap: var(--p1); }
+
+
+.inactive:hover, .inactive:active, .inactive:focus { background-color: transparent; }
+.inactive:active  { scale: 1; }

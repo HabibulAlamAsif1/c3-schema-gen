@@ -12,19 +12,19 @@ const downloadBtn = document.getElementById("download-btn")
 
 inputBoxProps.addEventListener("input", (e) => {
     if (e.currentTarget.value === "" || inputBoxTargets.value === "") {
-        if (!generateBtn.classList.contains("inactive")) { downloadBtn.classList.add("inactive") }
+        if (!generateBtn.classList.contains("inactive-btn")) { generateBtn.classList.add("inactive-btn") }
         return
     } else {
-        if (generateBtn.classList.contains("inactive")) { downloadBtn.classList.remove("inactive") }
+        if (generateBtn.classList.contains("inactive-btn")) { generateBtn.classList.remove("inactive-btn") }
     }
 })
 
 inputBoxTargets.addEventListener("input", (e) => {
     if (e.currentTarget.value === "" || inputBoxTargets.value === "") {
-        if (!generateBtn.classList.contains("inactive")) { downloadBtn.classList.add("inactive") }
+        if (!generateBtn.classList.contains("inactive-btn")) { generateBtn.classList.add("inactive-btn") }
         return
     } else {
-        if (generateBtn.classList.contains("inactive")) { downloadBtn.classList.remove("inactive") }
+        if (generateBtn.classList.contains("inactive-btn")) { generateBtn.classList.remove("inactive-btn") }
     }
 })
 
@@ -37,7 +37,7 @@ outputBox.addEventListener("input", (e) => {
 
 generateBtn.addEventListener("click", (e) => {
 
-    if (e.currentTarget.classList.contains("inactive")) { return }
+    if (generateBtn.classList.contains("inactive-btn")) { return }
 
     inputBoxProps.value += '\n'
     inputBoxTargets.value += '\n'
@@ -75,7 +75,7 @@ document.getElementById("copy-btn").addEventListener("click", async (e) => {
 })
 
 downloadBtn.addEventListener("click", (e) => {
-    if (e.target.classList.contains("inactive")) { return }
+    if (e.currentTarget.classList.contains("inactive")) { return }
 
     const blob = new Blob([outputBox.value], { type: "application/json" })
     const blobURL = URL.createObjectURL(blob)

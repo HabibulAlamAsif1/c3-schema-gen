@@ -37,8 +37,10 @@ main {
     transition: background-color 0.2s ease;
 }
 
-#generate:hover, #generate:focus { background-color: var(--accent-hover)}
-#generate:active {
+.inactive-btn#generate { background-color: var(--inactive); }
+
+:not(.inactive-btn)#generate:hover, :not(.inactive-btn)#generate:focus { background-color: var(--accent-hover)}
+:not(.inactive-btn)#generate:active {
     background-color: var(--accent-click);
     scale: 0.95;
 }
@@ -97,16 +99,12 @@ textarea:focus { outline: 0; }
     border: none;
 }
 
-:not(.inactive).icon:hover {
+.icon:hover, .icon:focus {
     transition: background-color 0.2s ease;
     background-color: var(--hover) }
 
-:not(.inactive).icon:focus {
-    transition: 0s;
-    background-color: var(--hover); }
-
-:not(.inactive).icon:active { background-color: var(--click); }
-:not(.inactive).icon:active .icon-img { scale: 0.9; }
+.icon:active { background-color: var(--click); }
+.icon:active .icon-img { scale: 0.9; }
 
 .icon-img {
     height: 1.3rem;
