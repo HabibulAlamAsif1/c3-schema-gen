@@ -23,11 +23,23 @@ export function generateSchemaObject(props, targets) {
 
                 "additionalProperties": {
                     "required": ["type"],
-                    "properties": {}
+                    "properties": {
+                        "symtab": {
+                            "type": "number",
+                            "description": "Sets the preferred symtab size.",
+                            "default": 1048576
+                        }
+                    }
                 },
 
                 "description": "Set of targets for the project.",
                 "default": {"myapp": {"type": "executable"}}
+            },
+
+            "symtab": {
+                "type": "number",
+                "description": "Sets the preferred symtab size.",
+                "default": 1048576
             }
         }
     }
