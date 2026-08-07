@@ -128,6 +128,25 @@ textarea:focus { outline: 0; }
     stroke: var(--inactive);
 }
 
+hr {
+    width: auto;
+    margin: var(--m2) 0 var(--m1) 0;
+    border-color: var(--negative);
+}
+
+code {
+    background-color: var(--border-clr);
+    padding: 0 var(--p2) 0 var(--p2);
+}
+
+ol {
+    padding: 0 0 0 var(--p3);
+    margin: 0;
+    list-style: decimal;
+}
+
+ol .space { width: var(--p1); }
+
 @media screen and (max-width: 480px) {
     .text-fields {
         padding: var(--p2) 0 var(--p2) 0;

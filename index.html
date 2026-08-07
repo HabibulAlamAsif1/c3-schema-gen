@@ -79,7 +79,19 @@
             </div>
         </div>
 
-        <div style="height: 4rem;"></div>
+        <hr>
+
+        <h2>Usage Guide</h2>
+        <p>Follow the steps below:</p>
+        <ol>
+            <li> &nbsp; Paste the output from <code>c3c --list-project-properties</code> into the textarea labeled "Properties".</li>
+            <li> &nbsp; Paste the output from <code>c3c --list-targets</code> into the textarea labeled "Targets".</li>
+            <li> &nbsp; Click the "Generate" button.</li>
+            <li> &nbsp; Copy the text from the textarea labeled "Output" into a file named <code>c3-config.schema.json</code> in your project directory.
+                Or click the download button and move the downloaded file into your project directory</li>
+            <li> &nbsp; Write <code>"$schema": "./c3-config.schema.json"</code> into the <code>project.json</code> file</li>
+        </ol>
+        <p>Now in your editor you will get autocomplete, descriptions, options and validation for each valid property.</p>
     </main>
 
     <script>
