@@ -13,7 +13,7 @@ Normally, to write the `project.json` file you would have to:
 JSON schemas solve this minor inconvenience by providing you with auto-complete, descriptions and validation right inside the IDE.
 
 ## 2. What This Tool Solves
-Supported properties of the `project.json` file varies from environment to environment. This makes it so statuc schemas are limited to:
+Supported properties of the `project.json` file varies from environment to environment. This makes it so static schemas are limited to:
 
 - Supporting only common properties.
 - Not work for everyone.
