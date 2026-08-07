@@ -101,9 +101,9 @@ export function generateSchemaObject(props, targets) {
             // handle default
             let schemaDefault = getDefault(prop.type, prop.defaultv)
 
-            if (prop.isArray && schemaDefault !== null) {
+            if (prop.isArray && schemaDefault !== null && schemaDefault !== "") {
                 schema["default"] = [schemaDefault]
-            } else if (schemaDefault !== null) {
+            } else if (schemaDefault !== null && schemaDefault !== "") {
                 schema["default"] = schemaDefault
             }
 
