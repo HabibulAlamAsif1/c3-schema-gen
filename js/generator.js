@@ -81,10 +81,10 @@ export function generateSchemaObject(props, targets) {
             // handle options
             if (prop.hasOptDesc) {
                 
-                schema["oneof"] = []
+                schema["oneOf"] = []
 
                 for (const option of prop.options) {
-                    schema["oneof"].push({
+                    schema["oneOf"].push({
                         "const": option.opt,
                         "description": option.desc
                     })
