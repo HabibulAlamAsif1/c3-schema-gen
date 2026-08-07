@@ -20,6 +20,8 @@ main {
     padding: var(--p3);
 }
 
+button { z-index: 999; }
+
 #generate {
     width: 10rem;
     height: 2.3rem;
