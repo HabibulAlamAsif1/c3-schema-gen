@@ -161,7 +161,7 @@ export function analize(tokens) {
                 break
 
             case TokenType.KW_ONE:
-                if (peek(1).type == TokenType.KW_of) {
+                if (peek(1).type == TokenType.KW_OF) {
                     listEntered()
                     idx++
                     break
@@ -226,6 +226,7 @@ export function analize(tokens) {
             case TokenType.KW_AND:
                 if (state == State.OPTIONS) { break }
 
+            case TokenType.KW_OF:
             case TokenType.KW_IS:
             case TokenType.KW_TO:
             case TokenType.WORD:
