@@ -10,35 +10,34 @@ const generateBtn = document.getElementById("generate")
 const downloadBtn = document.getElementById("download-btn")
 
 
-function validateInput() {
-    if (inputBoxProps.value.length === 0) { return "Properties textbox is empty"}
-    if (inputBoxTargets.value.length === 0) { return "Targets textbox is empty"}
+inputBoxProps.addEventListener("input", (e) => {
+    if (e.currentTarget.value === "" || inputBoxTargets.value === "") {
+        if (!generateBtn.classList.contains("inactive")) { downloadBtn.classList.add("inactive") }
+        return
+    } else {
+        if (generateBtn.classList.contains("inactive")) { downloadBtn.classList.remove("inactive") }
+    }
+})
 
-    return ""
-}
-
-function inputError() {
-    outputBox.style.color = "#ff0000"
-}
-
+inputBoxTargets.addEventListener("input", (e) => {
+    if (e.currentTarget.value === "" || inputBoxTargets.value === "") {
+        if (!generateBtn.classList.contains("inactive")) { downloadBtn.classList.add("inactive") }
+        return
+    } else {
+        if (generateBtn.classList.contains("inactive")) { downloadBtn.classList.remove("inactive") }
+    }
+})
 
 outputBox.addEventListener("input", (e) => {
-    if (e.target.value === "") {
+    if (e.currentTarget.value === "") {
         if (!downloadBtn.classList.contains("inactive")) { downloadBtn.classList.add("inactive") }
         return
     }
 })
 
-generateBtn.addEventListener("click", () => {
+generateBtn.addEventListener("click", (e) => {
 
-    let err = validateInput()
-    if (err !== "") {
-        inputError()
-        outputBox.value = err
-        return
-    }
-
-    outputBox.style.color = "var(--text-clr)"
+    if (e.currentTarget.classList.contains("inactive")) { return }
 
     inputBoxProps.value += '\n'
     inputBoxTargets.value += '\n'
@@ -56,6 +55,7 @@ for (const pasteBtn of document.getElementsByClassName("paste-btn")) { pasteBtn.
     const textbox = e.currentTarget.parentElement.parentElement.querySelector("textarea")
 
     navigator.clipboard.readText().then((value) => { textbox.value = value })
+    textbox.dispatchEvent(new Event("input"))
 }) }
 
 for (const clearBtn of document.getElementsByClassName("clear-btn")) { clearBtn.addEventListener("click", (e) => {
