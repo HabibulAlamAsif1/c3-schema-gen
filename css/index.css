@@ -155,7 +155,7 @@ ol {
 
 ol .space { width: var(--p1); }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .text-fields {
         padding: var(--p2) 0 var(--p2) 0;
         grid-template-columns: 1fr;
