@@ -20,7 +20,10 @@ main {
     padding: var(--p3);
 }
 
-button { z-index: 999; }
+button {
+    z-index: 999;
+    cursor: pointer;
+}
 
 #generate {
     width: 10rem;
@@ -28,6 +31,7 @@ button { z-index: 999; }
 
     color: white;
     font-weight: bold;
+    font-size: var(--fs1);
 
     border-radius: var(--br1);
     border: 0;
@@ -39,7 +43,12 @@ button { z-index: 999; }
     transition: background-color 0.2s ease;
 }
 
-.inactive-btn#generate { background-color: var(--inactive); }
+.inactive-btn#generate {
+    cursor: default;
+    background-color: transparent;
+    color: var(--accent);
+    border: var(--b1) solid var(--accent);
+}
 
 :not(.inactive-btn)#generate:hover, :not(.inactive-btn)#generate:focus { background-color: var(--accent-hover)}
 :not(.inactive-btn)#generate:active {
@@ -126,8 +135,8 @@ textarea:focus { outline: 0; }
 }
 
 .inactive#download-btn svg path {
-    fill: var(--text-grey);
-    stroke: var(--text-grey);
+    fill: var(--inactive);
+    stroke: var(--inactive);
 }
 
 hr {
@@ -139,7 +148,6 @@ hr {
 code {
     background-color: var(--border-clr);
     padding: 0 var(--p2) 0 var(--p2);
-    margin: 0 var(--m3) 0 var(--m3);
 }
 
 ol {
@@ -152,8 +160,6 @@ ol {
 
     list-style: decimal;
 }
-
-ol .space { width: var(--p1); }
 
 @media screen and (max-width: 600px) {
     .text-fields {

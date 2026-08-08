@@ -25,5 +25,6 @@
 .gap1 { gap: var(--p1); }
 
 
+.inactive { cursor: default; }
 .inactive:hover, .inactive:active, .inactive:focus { background-color: transparent; }
 .inactive:active  { scale: 1; }
