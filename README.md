@@ -23,9 +23,4 @@ Supported properties of the `project.json` file varies from environment to envir
 _c3-schema-gen_ solves this by parsing the output of specific commands from the c3 compiler into a specialized JSON schema.
 
 ## 3. How To Use This
-1. Go to the [webpage](https://habibulalamasif1.github.io/c3-schema-gen/) hosted via github pages. Below the header you will see three labeled textareas.
-2. On the 'Properties' textarea, paste the output from the command: `c3c --list-project-properties`.
-3. On the 'Targets' textarea, paste the output from the command: `c3c --lost-targets`.
-4. Click the 'Generate' button.
-5. Copy the text in the 'Output' textarea into a file named `c3-config.schema.json` in the project directory. Or download it as a file by clicking the download icon and moving it into your project directory.
-6. Write `"$schema": "./c3-config.schema.json"` in the `project.json` file.
+Since tool is hosted via github pages, you can use this tool right now without any installing or setup by going to the [c3-schema-gen webpage](https://habibulalamasif1.github.io/c3-schema-gen/). If you scroll down you may find a 5-step guide on how you can use this.
