@@ -1,6 +1,9 @@
 # c3-schema-gen
 <img src="assets/c3-json.png" align="right" width="140"/>
 
+_- MIT_\
+_- v1.0.0 stable_
+  
 _c3-schema-gen_ is a simple tool that generates a JSON schema for the C3 language `project.json` file specific to your environment.
 
 ## 1. Why Use JSON Schema
