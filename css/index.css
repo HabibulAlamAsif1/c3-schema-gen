@@ -50,9 +50,9 @@ button {
     border: var(--b1) solid var(--accent);
 }
 
-:not(.inactive-btn)#generate:hover, :not(.inactive-btn)#generate:focus { background-color: var(--accent-hover)}
+:not(.inactive-btn)#generate:hover, :not(.inactive-btn)#generate:focus { background-image: var(--hover)}
 :not(.inactive-btn)#generate:active {
-    background-color: var(--accent-click);
+    background-image: var(--click);
     scale: 0.95;
 }
 
@@ -96,11 +96,8 @@ textarea:focus { outline: 0; }
 
 .textbox-toolbar {
     height: 2.5rem;
-
     padding: 0 var(--p2) 0 var(--p2);
-
     display: grid;
-
     place-items: center;
 }
 
@@ -111,10 +108,9 @@ textarea:focus { outline: 0; }
 }
 
 .icon:hover, .icon:focus {
-    transition: background-color 0.2s ease;
-    background-color: var(--hover) }
+    background-image: var(--hover) }
 
-.icon:active { background-color: var(--click); }
+.icon:active { background-image: var(--click); }
 .icon:active .icon-img { scale: 0.9; }
 
 .icon-img {
@@ -132,6 +128,7 @@ textarea:focus { outline: 0; }
 #download-btn svg path {
     fill: var(--accent);
     stroke: var(--accent);
+    transition: fill 0.2s ease, stroke 0.2s ease;
 }
 
 .inactive#download-btn svg path {

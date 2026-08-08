@@ -14,17 +14,15 @@
     --br1: 6px;
 
     --accent: #187ef1;
-    --accent-hover: #3f96f9;
-    --accent-click: #166dd1;
 
     --main:        light-dark(#f3f4ff,  #171821);
     --negative:    light-dark(#1c1c1c,  #fbfbfb);
-    --hover:       light-dark(#0000001d,  #ffffff1d);
+    --hover:       light-dark(linear-gradient(#0000001d, #0000001d), linear-gradient(#ffffff1d, #ffffff1d));
     --text-clr:    light-dark(#1d1d1d,  #dddddd);
     --inactive:    light-dark(#3f3f3f,  #b0b0b0);
     --border-clr:  light-dark(#aaaae6,  #2a2d50);
     
-    --click: #0000003d;
+    --click: linear-gradient(#0000003d, #0000003d);
     --icon-clr: none;
 }
 

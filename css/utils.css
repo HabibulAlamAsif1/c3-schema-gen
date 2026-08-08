@@ -26,5 +26,5 @@
 
 
 .inactive { cursor: default; }
-.inactive:hover, .inactive:active, .inactive:focus { background-color: transparent; }
+.inactive:hover, .inactive:active, .inactive:focus { background-image: none; }
 .inactive:active  { scale: 1; }
