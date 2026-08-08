@@ -23,4 +23,4 @@ Supported properties of the `project.json` file varies from environment to envir
 _c3-schema-gen_ solves this by parsing the output of specific commands from the c3 compiler into a specialized JSON schema.
 
 ## 3. How To Use This
-Since tool is hosted via github pages, you can use this tool right now without any installing or setup by going to the [c3-schema-gen webpage](https://habibulalamasif1.github.io/c3-schema-gen/). If you scroll down you may find a 5-step guide on how you can use this.
+Since tool is hosted via github pages, you can use this tool right now without any installing or setup by going to the [c3-schema-gen webpage](https://habibulalamasif1.github.io/c3-schema-gen/). If you scroll down the webpage you may find a 5-step guide on how you can use this.
